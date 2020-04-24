@@ -1,0 +1,19 @@
+# Java
+*.class
+target/
+bin/
+
+# Maven
+.mvn*
+mvnw*
+
+# IDEs and editors
+.project
+.classpath
+.settings/
+.factorypath
+.metadata
+
+# System Files
+.DS_Store
+Thumbs.db
