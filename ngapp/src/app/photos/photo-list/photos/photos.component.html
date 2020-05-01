@@ -1,4 +1,10 @@
-<ab-photo *ngFor='let photo of photos'
-    [description]='photo.description'
-    [url]='photo.url'>
-</ab-photo>
+<ol class="list-unstyled">
+    <li *ngFor="let cols of rows" class="row">
+        <div *ngFor="let photo of cols" class="col-4">
+            <app-photo
+                [description]="photo.description"
+                [url]="photo.url">
+            </app-photo>
+        </div>
+    </li>
+</ol>
