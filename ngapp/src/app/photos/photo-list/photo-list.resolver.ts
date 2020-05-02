@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 import { Photo } from '../photo/photo';
-import { PhotoService } from '../photo/photo.service';
+import { PhotoService } from '../photo.service';
 
 @Injectable({ providedIn: 'root' })
 export class PhotoListResolver implements Resolve<Observable<Photo[]>> {
