@@ -9,6 +9,10 @@
                 [description]="photo.description"
                 [url]="photo.url">
             </app-photo>
+            <div>
+                <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i>{{ photo.likes }}
+                <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i>{{ photo.comments }}
+            </div>
         </div>
     </li>
 </ol>

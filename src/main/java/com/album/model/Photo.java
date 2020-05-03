@@ -4,6 +4,8 @@ public class Photo {
 
 	private String description;
 	private String url;
+	private int likes;
+	private int comments;
 
 	public Photo() {
 
@@ -28,6 +30,22 @@ public class Photo {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
 	}
 
 }
