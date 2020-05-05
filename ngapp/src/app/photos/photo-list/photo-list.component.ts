@@ -27,6 +27,7 @@ export class PhotoListComponent implements OnInit {
   load() {
     this.photoService.listAll(++this.currentPage)
       .subscribe(photos => {
+        this.filter = '';
         this.photos = this.photos.concat(photos);
         if (!photos.length) {
           this.hasMore = false;
