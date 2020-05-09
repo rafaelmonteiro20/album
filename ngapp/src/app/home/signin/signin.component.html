@@ -2,14 +2,37 @@
 
 <form [formGroup]="loginForm" class="form mt-4">
     <div class="form-group">
-        <input formControlName="username" class="form-control" placeholder="Username" autofocus>  
+        <input 
+            formControlName="username" 
+            class="form-control" 
+            placeholder="Username" 
+            autofocus>
+        <small
+            *ngIf="loginForm.get('username').errors?.required"
+            class="text-danger d-block mt-2">
+            Username is required!
+        </small>
     </div>
 
     <div class="form-group">
-        <input formControlName="password" type="password" class="form-control" placeholder="Password">              
+        <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Password">
+        <small
+            *ngIf="loginForm.get('password').errors?.required"
+            class="text-danger d-block mt-2">
+            Password is required!
+        </small>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block">Login</button>
+    <button 
+        [disabled]="loginForm.invalid" 
+        type="submit" 
+        class="btn btn-primary btn-block">
+        Login
+    </button>
 </form>
 
 <p class="mt-3">Not a user? <a>Register now</a></p>
