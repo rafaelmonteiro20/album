@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.album.controller.assembler.UserFormDisassembler;
 import com.album.controller.dto.UserDto;
 import com.album.controller.form.UserForm;
 import com.album.model.User;
@@ -30,6 +31,9 @@ public class UserController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Autowired
+	private UserFormDisassembler userFormDisassembler;
+	
 	@GetMapping
 	public List<UserDto> search() {
 		List<User> users = userService.findAll();
@@ -38,16 +42,13 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<?> create(@Valid @RequestBody UserForm userForm) {
-		User user = userService.save(convertToEntity(userForm));
+		User user = userFormDisassembler.toUser(userForm);
+		user = userService.save(user);
 		return new ResponseEntity<>(convertToDto(user), HttpStatus.CREATED);
 	}
 	
 	private UserDto convertToDto(User user) {
 	    return modelMapper.map(user, UserDto.class);
-	}
-	
-	private User convertToEntity(UserForm userForm) {
-		return modelMapper.map(userForm, User.class);
 	}
 	
 }
