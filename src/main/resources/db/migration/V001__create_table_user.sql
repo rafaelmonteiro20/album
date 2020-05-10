@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	email VARCHAR(80) NOT NULL,
 	username VARCHAR(80) NOT NULL,
 	password VARCHAR(80) NOT NULL,
-	create_date TIMESTAMP NOT NULL DEFAULT now(),
+	creation_date TIMESTAMP NOT NULL DEFAULT now(),
 	
 	CONSTRAINT pk_user PRIMARY KEY (id_user)
 );
