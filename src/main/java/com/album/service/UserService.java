@@ -1,30 +1,29 @@
 package com.album.service;
 
-import java.util.Arrays;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.album.model.User;
+import com.album.repository.UserRepository;
 
 @Service
 public class UserService {
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	public List<User> findAll() {
-		
-		User user = new User();
-		user.setId(1L);
-		user.setName("Rafael Monteiro");
-		user.setEmail("rafael@mail.com");
-		user.setUsername("rafaelmonteiro20");
-		
-		return Arrays.asList(user);
+		return userRepository.findAll();
 	}
 	
+	@Transactional
 	public User save(User user) {
-		System.out.println("Save user...");
-		System.out.println(user);
-		return user;
+		user.setPassword(user.getUsername());
+		return userRepository.save(user);
 	}
 	
 }
