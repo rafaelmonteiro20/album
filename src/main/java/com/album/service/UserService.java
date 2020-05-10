@@ -21,4 +21,10 @@ public class UserService {
 		return Arrays.asList(user);
 	}
 	
+	public User save(User user) {
+		System.out.println("Save user...");
+		System.out.println(user);
+		return user;
+	}
+	
 }
