@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { TokenService } from '../token/token.service';
+
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService) { }
 
   authenticate(username: string, password: string) {
     const headers = new HttpHeaders()
@@ -15,7 +18,8 @@ export class AuthService {
     
     const body = `username=${username}&password=${password}&grant_type=password`;
 
-    return this.http.post('http://localhost:8080/oauth/token', body, { headers, withCredentials: true });
+    return this.http.post('http://localhost:8080/oauth/token', body, { headers, withCredentials: true })
+      .pipe(tap(response => this.tokenService.setToken(response)));
   }
 
 }
