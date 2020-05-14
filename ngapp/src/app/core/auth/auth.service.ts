@@ -18,8 +18,8 @@ export class AuthService {
     
     const body = `username=${username}&password=${password}&grant_type=password`;
 
-    return this.http.post('http://localhost:8080/oauth/token', body, { headers, withCredentials: true })
-      .pipe(tap(response => this.tokenService.setToken(response)));
+    return this.http.post<any>('http://localhost:8080/oauth/token', body, { headers, withCredentials: true })
+      .pipe(tap(response => this.tokenService.setToken(response.access_token)));
   }
 
 }
