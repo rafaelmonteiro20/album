@@ -10,11 +10,10 @@ import { User } from '../user/user';
 })
 export class HeaderComponent {
 
-    user: User;
+    user$: Observable<User>;
 
     constructor(userService: UserService) {
-        const user$ = userService.getUser();
-        user$.subscribe(user => this.user = user);
+        this.user$ = userService.getUser();
     }
 
 }
