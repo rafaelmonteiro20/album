@@ -62,7 +62,7 @@
             Maximum length is 30.
         </small>
         <small
-            *ngIf="signupForm.get('userName').errors?.pattern"
+            *ngIf="signupForm.get('userName').errors?.lowercase"
             class="text-danger d-block mt-2">
             Must be lowercase.
         </small>
