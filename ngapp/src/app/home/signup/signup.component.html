@@ -1,23 +1,101 @@
 <h4 class="text-center"> Register to embrace a new world!</h4>
 
-<form class="form mt-4">
+<form [formGroup]="signupForm" class="form mt-4">
     <div class="form-group">
-        <input  placeholder="email" class="form-control" autofocus >
+        <input
+            formControlName="email"
+            placeholder="E-mail" 
+            class="form-control" 
+            autofocus>
+        <small
+            *ngIf="signupForm.get('email').errors?.required"
+            class="text-danger d-block mt-2">
+            E-mail is required.
+        </small>
+        <small
+            *ngIf="signupForm.get('email').errors?.email"
+            class="text-danger d-block mt-2">
+            Invalid e-mail.
+        </small>
     </div>
 
     <div class="form-group">
-        <input placeholder="full name" class="form-control">
+        <input
+            formControlName="fullName" 
+            placeholder="Full name" 
+            class="form-control">
+        <small
+            *ngIf="signupForm.get('fullName').errors?.required"
+            class="text-danger d-block mt-2">
+            Full name is required.
+        </small>
+        <small
+            *ngIf="signupForm.get('fullName').errors?.minlength"
+            class="text-danger d-block mt-2">
+            Minimum length is 2.
+        </small>
+        <small
+            *ngIf="signupForm.get('fullName').errors?.maxlength"
+            class="text-danger d-block mt-2">
+            Maximum length is 50.
+        </small>
     </div>
 
     <div class="form-group">
-        <input placeholder="user name" class="form-control">
+        <input
+            formControlName="userName" 
+            placeholder="User name" 
+            class="form-control">
+        <small
+            *ngIf="signupForm.get('userName').errors?.required"
+            class="text-danger d-block mt-2">
+            User name is required.
+        </small>
+        <small
+            *ngIf="signupForm.get('userName').errors?.minlength"
+            class="text-danger d-block mt-2">
+            Minimum length is 2.
+        </small>
+        <small
+            *ngIf="signupForm.get('userName').errors?.maxlength"
+            class="text-danger d-block mt-2">
+            Maximum length is 30.
+        </small>
+        <small
+            *ngIf="signupForm.get('userName').errors?.pattern"
+            class="text-danger d-block mt-2">
+            Must be lowercase.
+        </small>
     </div>
 
     <div class="form-group">
-        <input type="password" placeholder="password" class="form-control">
+        <input
+            formControlName="password" 
+            type="password" 
+            placeholder="Password" 
+            class="form-control">
+        <small
+            *ngIf="signupForm.get('password').errors?.required"
+            class="text-danger d-block mt-2">
+            Password is required.
+        </small>
+        <small
+            *ngIf="signupForm.get('password').errors?.minlength"
+            class="text-danger d-block mt-2">
+            Minimum length is 6.
+        </small>
+        <small
+            *ngIf="signupForm.get('password').errors?.maxlength"
+            class="text-danger d-block mt-2">
+            Maximum length is 14.
+        </small>
     </div>
 
-    <button class="btn btn-primary btn-block">Register</button>
+    <button 
+        [disabled]="signupForm.invalid"
+        class="btn btn-primary btn-block">
+        Register
+    </button>
 
     <p>Already a user?<a [routerLink]="['']" class="ml-2">Sign In!</a></p>
 </form>
