@@ -14,7 +14,7 @@ export class UserNotTakenValidator {
         return (control: AbstractControl) => {
             return control
                 .valueChanges
-                .pipe(debounceTime(300))
+                .pipe(debounceTime(400))
                 .pipe(switchMap(userName => {
                     return this.signUpService.checkUserNameTaken(userName)
                 }))

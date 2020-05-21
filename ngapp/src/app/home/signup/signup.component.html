@@ -66,6 +66,16 @@
             class="text-danger d-block mt-2">
             Must be lowercase.
         </small>
+        <small
+            *ngIf="signupForm.get('userName').errors?.userNameTaken"
+            class="text-danger d-block mt-2">
+            Username already taken.
+        </small>
+        <small
+            *ngIf="signupForm.get('userName').valid"
+            class="text-success">
+            User available
+        </small>
     </div>
 
     <div class="form-group">
@@ -92,7 +102,7 @@
     </div>
 
     <button 
-        [disabled]="signupForm.invalid"
+        [disabled]="signupForm.invalid || signupForm.pending"
         class="btn btn-primary btn-block">
         Register
     </button>
