@@ -6,6 +6,6 @@ import com.album.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	boolean existsByUsername(String userName);
+	boolean existsByUserName(String userName);
 	
 }

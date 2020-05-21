@@ -2,9 +2,9 @@ CREATE SEQUENCE IF NOT EXISTS seq_user;
 
 CREATE TABLE IF NOT EXISTS "user" (
 	id_user INT8 NOT NULL,
-	name VARCHAR(80) NOT NULL,
 	email VARCHAR(80) NOT NULL,
-	username VARCHAR(80) NOT NULL,
+	full_name VARCHAR(50) NOT NULL,
+	user_name VARCHAR(30) NOT NULL,
 	password VARCHAR(80) NOT NULL,
 	creation_date TIMESTAMP NOT NULL DEFAULT now(),
 	
@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS "user" (
 );
 
 ALTER TABLE "user" ALTER COLUMN id_user SET DEFAULT NEXTVAL('seq_user');
-CREATE UNIQUE INDEX idx_user_username ON "user" USING btree (username);
+CREATE UNIQUE INDEX idx_user_user_name ON "user" USING btree (user_name);

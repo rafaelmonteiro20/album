@@ -26,11 +26,13 @@ public class User {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	private String name;
-	
 	private String email;
+
+	@Column(name = "full_name")
+	private String fullName;
 	
-	private String username;
+	@Column(name = "user_name")
+	private String userName;
 	
 	private String password;
 	
