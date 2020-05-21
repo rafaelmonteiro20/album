@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,18 @@ public class UserService {
 	public User save(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
+	}
+
+	public boolean exists(String userName) {
+		User user = new User();
+		user.setUsername(userName);
+		
+		ExampleMatcher matcher = ExampleMatcher.matching()
+				.withIgnoreCase();
+		
+		Example<User> example = Example.of(user, matcher);
+		
+		return userRepository.exists(example);
 	}
 	
 }

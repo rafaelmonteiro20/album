@@ -37,7 +37,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 			.cors()
 		.and()
 			.authorizeRequests()
-			.antMatchers("/photos").permitAll()
+			.antMatchers("/photos", "/users/**").permitAll()
 			.anyRequest().authenticated()
 		.and()
 			.oauth2ResourceServer()
