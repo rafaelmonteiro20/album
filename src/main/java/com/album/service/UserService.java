@@ -33,15 +33,8 @@ public class UserService {
 	}
 
 	public boolean exists(String userName) {
-		User user = new User();
-		user.setUsername(userName);
-		
-		ExampleMatcher matcher = ExampleMatcher.matching()
-				.withIgnoreCase();
-		
-		Example<User> example = Example.of(user, matcher);
-		
-		return userRepository.exists(example);
+		userName = userName.toLowerCase();
+		return userRepository.existsByUsername(userName);
 	}
 	
 }
