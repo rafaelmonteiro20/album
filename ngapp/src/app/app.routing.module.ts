@@ -19,7 +19,7 @@ const routes: Routes = [
         component: SignUpComponent 
     },
     { 
-        path: 'user/photos', 
+        path: ':userName', 
         component: PhotoListComponent,
         resolve: {
             photos: PhotoListResolver

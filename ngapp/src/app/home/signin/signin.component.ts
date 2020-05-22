@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
         
         this.authService.authenticate(username, password)
             .subscribe(
-                () => this.router.navigate(['user', 'photos']),
+                () => this.router.navigate([username]),
                 err => console.log(err));
     }
     

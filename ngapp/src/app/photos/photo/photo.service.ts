@@ -9,9 +9,9 @@ export class PhotoService {
 
     constructor(private http: HttpClient) {}
 
-    listAll(page: number = 0): Observable<Photo[]> {
+    listAll(userName: string, page: number = 0): Observable<Photo[]> {
         let params = new HttpParams().append('page', page.toString());
-        return this.http.get<Photo[]>('http://localhost:8080/photos', { params });
+        return this.http.get<Photo[]>(`http://localhost:8080/photos/${userName}`, { params });
     }
     
 }
