@@ -1,3 +1,7 @@
 body {
-    margin-top: 60px;
+    margin-top: 80px;
+    background-color: #fafafa;
+}
+header {
+    border-bottom: 2px solid #dbdbdb;
 }
