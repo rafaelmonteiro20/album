@@ -5,3 +5,14 @@ body {
 header {
     border-bottom: 2px solid #dbdbdb;
 }
+.box {
+    background-color: #fff;
+    border: 2px solid #dbdbdb;
+    border-radius: 1px;
+    padding: 30px;
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 450px;
+    width: 100%;
+    margin: auto;
+}
