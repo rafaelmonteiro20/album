@@ -29,7 +29,11 @@ export class SignInComponent implements OnInit {
         this.authService.authenticate(username, password)
             .subscribe(
                 () => this.router.navigate([username]),
-                err => console.log(err));
+                err => {
+                    alert('User not found or invalid password');
+                    this.loginForm.reset();
+                }
+            );
     }
     
 
