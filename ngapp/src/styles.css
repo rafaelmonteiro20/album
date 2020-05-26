@@ -16,3 +16,6 @@ header {
     width: 100%;
     margin: auto;
 }
+.fixed-bottom {
+    border-top: 2px solid #dbdbdb;
+}
