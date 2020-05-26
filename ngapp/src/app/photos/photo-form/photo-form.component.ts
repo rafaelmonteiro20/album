@@ -16,7 +16,7 @@ export class PhotoFormComponent implements OnInit {
             description: ['', 
                 [
                     Validators.required,
-                    Validators.maxLength(400)
+                    Validators.maxLength(300)
                 ]
             ],
             allowComments: [true]

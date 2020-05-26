@@ -5,6 +5,11 @@
             formControlName="file"
             type="file" 
             accept="image/*">
+        <small
+            *ngIf="photoForm.get('file').errors?.required"
+            class="text-danger d-block mt-2">
+            Please, select a photo.
+        </small>
       </div>
   
       <div class="col-md-6">
@@ -14,6 +19,16 @@
                 class="form-control form-control-sm" 
                 placeholder="Photo description">
             </textarea>
+            <small
+                *ngIf="photoForm.get('description').errors?.required"
+                class="text-danger d-block mt-2">
+                Description is required.
+            </small>
+            <small
+                *ngIf="photoForm.get('description').errors?.maxlength"
+                class="text-danger d-block mt-2">
+                Maximun size allowed is 300.
+            </small>
         </div>
   
         <div class="form-group">
