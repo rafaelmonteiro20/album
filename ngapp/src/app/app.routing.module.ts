@@ -7,6 +7,7 @@ import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { SignInComponent } from './home/signin/signin.component';
 import { SignUpComponent } from './home/signup/signup.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 
 const routes: Routes = [
     { 
@@ -24,6 +25,10 @@ const routes: Routes = [
         resolve: {
             photos: PhotoListResolver
         } 
+    },
+    { 
+        path: 'p/add', 
+        component: PhotoFormComponent
     },
     { 
         path: '**', 
