@@ -1,5 +1,6 @@
 package com.album.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.album.controller.dto.PhotoDto;
 import com.album.controller.form.PhotoForm;
+import com.album.model.Photo;
 import com.album.service.PhotoService;
 
 @CrossOrigin("*")
@@ -35,11 +37,15 @@ public class PhotoController {
 	}
 	
 	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void upload(@Valid PhotoForm photoForm, @RequestPart(required = true) MultipartFile imageFile) {
+	public void upload(@Valid PhotoForm photoForm, 
+			@RequestPart(required = true) MultipartFile imageFile) throws IOException {
 		
-		System.out.println(photoForm.getDescription());
-		System.out.println(photoForm.isAllowComments());
-		System.out.println(imageFile.getOriginalFilename());
+		Photo photo = new Photo();
+		photo.setDescription(photoForm.getDescription());
+		photo.setAllowComments(photoForm.isAllowComments());
+		photo.setPath(imageFile.getOriginalFilename());
+		
+		photoService.save(photo, imageFile.getInputStream());
 	}
 	
 }
