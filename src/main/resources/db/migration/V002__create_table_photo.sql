@@ -1,0 +1,13 @@
+CREATE SEQUENCE IF NOT EXISTS seq_photo;
+
+CREATE TABLE IF NOT EXISTS photo (
+	id_photo INT8 NOT NULL,
+	description VARCHAR(300) NOT NULL,
+	path VARCHAR(100) NOT NULL,
+	allow_comments BOOL NOT NULL DEFAULT TRUE,
+	creation_date TIMESTAMP NOT NULL DEFAULT now(),
+	
+	CONSTRAINT pk_photo PRIMARY KEY (id_photo)
+);
+
+ALTER TABLE photo ALTER COLUMN id_photo SET DEFAULT NEXTVAL('seq_photo');
