@@ -3,7 +3,10 @@ package com.album.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.album.controller.dto.PhotoDto;
+import com.album.controller.form.PhotoForm;
 import com.album.service.PhotoService;
 
 @CrossOrigin("*")
@@ -30,12 +34,11 @@ public class PhotoController {
 				.collect(Collectors.toList());
 	}
 	
-	@PostMapping("/upload")
-	public void upload(String description, boolean allowComments, 
-			@RequestPart(required = true) MultipartFile imageFile) {
+	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void upload(@Valid PhotoForm photoForm, @RequestPart(required = true) MultipartFile imageFile) {
 		
-		System.out.println(description);
-		System.out.println(allowComments);
+		System.out.println(photoForm.getDescription());
+		System.out.println(photoForm.isAllowComments());
 		System.out.println(imageFile.getOriginalFilename());
 	}
 	
