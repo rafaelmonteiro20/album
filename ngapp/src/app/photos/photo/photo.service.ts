@@ -13,5 +13,13 @@ export class PhotoService {
         let params = new HttpParams().append('page', page.toString());
         return this.http.get<Photo[]>(`http://localhost:8080/photos/${userName}`, { params });
     }
+
+    upload(description: string, allowComments: boolean, file: File) {
+        const formData = new FormData();
+        formData.append('description', description);
+        formData.append('allowComments', allowComments ? 'true' : 'false');
+        formData.append('imageFile', file);
+        return this.http.post('http://localhost:8080/photos/upload', formData);
+    }
     
 }

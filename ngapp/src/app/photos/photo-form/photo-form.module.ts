@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { PhotoFormComponent } from './photo-form.component';
 
@@ -11,7 +12,8 @@ import { PhotoFormComponent } from './photo-form.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ]
 })
 export class PhotoFormModule { }
