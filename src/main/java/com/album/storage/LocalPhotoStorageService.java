@@ -5,12 +5,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
+
+import com.album.config.storage.StorageConfig;
 
 @Service
 public class LocalPhotoStorageService implements PhotoStorageService {
 
+	@Autowired
+	private StorageConfig storageConfig;
+	
 	@Override
 	public void save(String fileName, InputStream file) {
 		try {
@@ -22,7 +28,7 @@ public class LocalPhotoStorageService implements PhotoStorageService {
 	}
 	
 	private Path getFilePath(String fileName) {
-		return Paths.get("C:/album/photos").resolve(Paths.get(fileName));
+		return Paths.get(storageConfig.getPhotoDirectory()).resolve(Paths.get(fileName));
 	}
 	
 }
