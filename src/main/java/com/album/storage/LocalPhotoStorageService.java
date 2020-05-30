@@ -27,6 +27,16 @@ public class LocalPhotoStorageService implements PhotoStorageService {
 		}
 	}
 	
+	@Override
+	public InputStream getFile(String fileName) {
+		try {
+			Path filePath = getFilePath(fileName);
+			return Files.newInputStream(filePath);
+		} catch (Exception e) {
+			throw new StorageException("Error retrieving file.", e);
+		}
+	}
+	
 	private Path getFilePath(String fileName) {
 		return Paths.get(storageConfig.getPhotoDirectory()).resolve(Paths.get(fileName));
 	}
