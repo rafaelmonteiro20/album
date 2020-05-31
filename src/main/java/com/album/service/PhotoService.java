@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.album.model.Photo;
 import com.album.repository.PhotoRepository;
@@ -23,11 +24,12 @@ public class PhotoService {
 		return photoRepository.findAll();
 	}
 	
-	public String save(Photo photo, InputStream file) {
+	@Transactional
+	public Photo save(Photo photo, InputStream file) {
 		String fileName = photoStorage.generateFileName(photo.getPath());
 		photo.setPath(fileName);
 		photoStorage.save(fileName, file);
-		return fileName;
+		return photoRepository.save(photo);
 	}
 	
 }
