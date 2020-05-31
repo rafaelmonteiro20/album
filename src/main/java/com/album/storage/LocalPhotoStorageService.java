@@ -18,26 +18,26 @@ public class LocalPhotoStorageService implements PhotoStorageService {
 	private StorageConfig storageConfig;
 	
 	@Override
-	public void save(String fileName, InputStream file) {
+	public void save(String fileName, InputStream inputStream) {
 		try {
-			Path filePath = getFilePath(fileName);
-			FileCopyUtils.copy(file, Files.newOutputStream(filePath));
+			Path filePath = getFile(fileName);
+			FileCopyUtils.copy(inputStream, Files.newOutputStream(filePath));
 		} catch (Exception e) {
 			throw new StorageException("Could not save file.", e);
 		}
 	}
 	
 	@Override
-	public InputStream getFile(String fileName) {
+	public InputStream getInputStream(String fileName) {
 		try {
-			Path filePath = getFilePath(fileName);
-			return Files.newInputStream(filePath);
+			return Files.newInputStream(getFile(fileName));
 		} catch (Exception e) {
 			throw new StorageException("Error retrieving file.", e);
 		}
 	}
 	
-	private Path getFilePath(String fileName) {
+	@Override
+	public Path getFile(String fileName) {
 		return Paths.get(storageConfig.getPhotoDirectory()).resolve(Paths.get(fileName));
 	}
 	

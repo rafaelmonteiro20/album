@@ -1,6 +1,9 @@
 package com.album.controller;
 
 import java.io.InputStream;
+import java.net.FileNameMap;
+import java.net.URLConnection;
+import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -15,7 +18,7 @@ import com.album.storage.PhotoStorageService;
 import com.album.storage.StorageException;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("/images")
 public class FileController {
 	
 	@Autowired
@@ -24,10 +27,17 @@ public class FileController {
 	@GetMapping("/{name:.*}")
 	public ResponseEntity<?> get(@PathVariable String name) {
 		try {
-			InputStream file = photoStorage.getFile(name);
+			Path file = photoStorage.getFile(name);
+
+			FileNameMap fileNameMap = URLConnection.getFileNameMap();
+			String contentType = fileNameMap.getContentTypeFor("file:" + file);
+			
+			InputStream stream = photoStorage.getInputStream(name);
+			MediaType mediaType = MediaType.parseMediaType(contentType);
+			
 			return ResponseEntity.ok()
-					.contentType(MediaType.IMAGE_PNG)
-					.body(new InputStreamResource(file));
+					.contentType(mediaType)
+					.body(new InputStreamResource(stream));
 			
 		} catch (StorageException e) {
 			return ResponseEntity.notFound().build();
