@@ -13,7 +13,7 @@ export class PhotoComponent {
     @Input() description = '';
     
     @Input() set url(url: string) {
-        if (url.startsWith('http')) {
+        if (url.startsWith('http') || url.startsWith('data')) {
             this._url = url;
         } else {
             this._url = CLOUD + url;
