@@ -30,7 +30,7 @@ public class PhotoController {
 	@Autowired
 	private PhotoService photoService;
 	
-	@GetMapping("/{userName}")
+	@GetMapping("/user/{userName}")
 	public List<PhotoDto> findAll(@PathVariable String userName) {
 		return photoService.findAll().stream().map(PhotoDto::build)
 				.collect(Collectors.toList());
@@ -46,6 +46,12 @@ public class PhotoController {
 		photo.setPath(imageFile.getOriginalFilename());
 		
 		photoService.save(photo, imageFile.getInputStream());
+	}
+	
+	@GetMapping("/{id}")
+	public PhotoDto get(@PathVariable Long id) {
+		Photo photo = photoService.findById(id);
+		return PhotoDto.build(photo);
 	}
 	
 }

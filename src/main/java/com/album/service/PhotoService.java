@@ -32,4 +32,9 @@ public class PhotoService {
 		return photoRepository.save(photo);
 	}
 	
+	public Photo findById(Long id) {
+		return photoRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Photo not found."));
+	}
+	
 }
