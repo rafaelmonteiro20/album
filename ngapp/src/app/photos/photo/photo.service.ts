@@ -11,7 +11,7 @@ export class PhotoService {
 
     listAll(userName: string, page: number = 0): Observable<Photo[]> {
         let params = new HttpParams().append('page', page.toString());
-        return this.http.get<Photo[]>(`http://localhost:8080/photos/${userName}`, { params });
+        return this.http.get<Photo[]>(`http://localhost:8080/photos/user/${userName}`, { params });
     }
 
     upload(description: string, allowComments: boolean, file: File) {
