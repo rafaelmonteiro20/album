@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class PhotoDto {
 
+	private Long id;
 	private String description;
 	private String url;
 	private int likes;
@@ -14,6 +15,7 @@ public class PhotoDto {
 	
 	public static PhotoDto build(Photo photo) {
 		PhotoDto dto = new PhotoDto();
+		dto.id = photo.getId();
 		dto.description = photo.getDescription();
 		dto.url = photo.getPath();
 		return dto;
