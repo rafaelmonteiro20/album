@@ -1,1 +1,3 @@
-<h1>Oi...</h1>
+<div *ngIf="(photo$ | async) as photo">
+    {{photo.description}}
+</div>
