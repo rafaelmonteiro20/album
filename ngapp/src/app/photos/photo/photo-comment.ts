@@ -1,5 +1,5 @@
 export interface PhotoComment {
     text: string;
-    createDate: Date;
+    creationDate: Date;
     username: string;
 }
