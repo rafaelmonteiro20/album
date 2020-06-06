@@ -31,4 +31,8 @@ export class PhotoService {
         return this.http.get<PhotoComment[]>(`http://localhost:8080/photos/${photoId}/comments`);
     }
 
+    addComment(photoId: number, textComment: string) {
+        return this.http.post(`http://localhost:8080/photos/${photoId}/comments`, { textComment });
+    }
+
 }
