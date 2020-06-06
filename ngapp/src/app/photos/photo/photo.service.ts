@@ -28,7 +28,7 @@ export class PhotoService {
     }
     
     getComments(photoId: number) {
-        return this.http.get<PhotoComment>(`http://localhost:8080/photos/${photoId}/comments`);
+        return this.http.get<PhotoComment[]>(`http://localhost:8080/photos/${photoId}/comments`);
     }
 
 }

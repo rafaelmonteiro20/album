@@ -11,12 +11,29 @@
     </ul>
 <div>
 <div class="mt-4">
-    <form>
+    <form [formGroup]="commentForm">
         <div class="input-group">
-            <textarea class="form-control"></textarea>
+            <textarea 
+                formControlName="comment"
+                class="form-control">
+            </textarea>
             <div class="input-group-append">
-                <button class="btn btn-primary pull-left">Publish</button>
+                <button
+                    [disabled]="commentForm.invalid"
+                    class="btn btn-primary pull-left">
+                    Publish
+                </button>
             </div>
         </div>
+        <small
+            *ngIf="commentForm.get('comment').errors?.required"
+            class="text-danger d-block mt-2">
+            Comment is required.
+        </small>
+        <small
+            *ngIf="commentForm.get('comment').errors?.maxlength"
+            class="text-danger d-block mt-2">
+            Maximun size allowed is 300.
+        </small>
     </form>
 </div>
