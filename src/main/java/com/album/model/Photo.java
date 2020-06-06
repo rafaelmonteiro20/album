@@ -39,10 +39,9 @@ public class Photo {
 	public Photo() {
 
 	}
-
-	public Photo(String description, String path) {
-		this.description = description;
-		this.path = path;
+	
+	public Photo(Long id) {
+		this.id = id;
 	}
 
 }

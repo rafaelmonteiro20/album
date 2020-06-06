@@ -25,7 +25,7 @@ public class CommentController {
 	
 	@GetMapping
 	public List<Comment> findAll(@PathVariable Long photoId) {
-		return commentService.findAllByPhoto(photoId);
+		return commentService.findByPhoto(photoId);
 	}
 	
 	@PostMapping
