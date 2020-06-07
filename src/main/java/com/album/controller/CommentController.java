@@ -1,6 +1,7 @@
 package com.album.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.album.controller.assembler.CommentAssembler;
+import com.album.controller.dto.CommentDTO;
 import com.album.controller.form.CommentForm;
 import com.album.model.Comment;
 import com.album.repository.UserRepository;
@@ -31,9 +34,14 @@ public class CommentController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private CommentAssembler commentAssembler;
+	
 	@GetMapping
-	public List<Comment> findAll(@PathVariable Long photoId) {
-		return commentService.findByPhoto(photoId);
+	public List<CommentDTO> findAll(@PathVariable Long photoId) {
+		return commentService.findByPhoto(photoId)
+				.stream().map(commentAssembler::toDTO)
+				.collect(Collectors.toList());
 	}
 	
 	@PostMapping
