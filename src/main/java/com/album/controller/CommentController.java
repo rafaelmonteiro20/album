@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.album.controller.form.CommentForm;
 import com.album.model.Comment;
+import com.album.repository.UserRepository;
 import com.album.service.CommentService;
+import com.album.service.PhotoService;
 
 @CrossOrigin("*")
 @RestController
@@ -23,6 +25,12 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+	@Autowired
+	private PhotoService photoService;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@GetMapping
 	public List<Comment> findAll(@PathVariable Long photoId) {
 		return commentService.findByPhoto(photoId);
@@ -30,8 +38,11 @@ public class CommentController {
 	
 	@PostMapping
 	public void save(@PathVariable Long photoId, @RequestBody CommentForm commentForm) {
-		System.out.println("Recebendo novo commentário para a foto: " + photoId);
-		System.out.print(commentForm.textComment);
+		Comment comment = new Comment();
+		comment.setText(commentForm.textComment);
+		comment.setPhoto(photoService.findById(photoId));
+		comment.setUser(userRepository.getOne(1L));
+		commentService.save(comment);
 	}
 	
 }
